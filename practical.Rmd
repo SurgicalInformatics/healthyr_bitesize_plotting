@@ -1,0 +1,319 @@
+---
+title: "Exercises"
+author: "Riinu Pius"
+date: "23/09/2020"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+    theme: sandstone
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(learnr)
+library(tidyverse)
+library(gapminder)
+
+gapdata <- gapminder
+# library(gradethis)
+# gradethis::gradethis_setup()
+```
+
+## What we're working towards:
+
+```{r, message=F, echo = FALSE}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap/1000, y=lifeExp,
+             colour = continent)) +
+  geom_point() +
+  facet_wrap(~continent) +
+  theme_bw()
+```
+
+We have data for countries around the world, and across these years: `r gapdata$year %>% unique() %>% knitr::combine_words()`. The plot above is for year 2007.
+
+This is the dataset we are working with:
+
+```{r}
+library(tidyverse)
+library(gapminder)
+library(tidyverse)
+gapdata <- gapminder
+
+gapdata
+```
+
+## Ex 1: filtering before ggplot
+
+Here's a plot all life expectancies in the dataset (plotted against GDP per capita).
+
+Add in a filter between gapdata and ggplot() to only include the year 2007.
+
+```{r ex1, exercise=TRUE, exercise.eval = TRUE}
+gapdata %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+  geom_point()
+```
+
+
+```{r ex1-solution}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+  geom_point()
+```
+
+```{r ex1-code-check, include = FALSE}
+grade_code()
+```
+
+You'll know that it worked when your plot looks like this:
+
+```{r echo=FALSE}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+  geom_point()
+```
+
+## Ex 2: colour points by continent
+
+Colour the currently black points by the `continent` variable. Do this by adding `colour = continent` inside the `aes()` bracket.
+
+
+```{r ex2, exercise=TRUE, exercise.eval = TRUE}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+  geom_point()
+```
+
+
+```{r ex2-solution}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point()
+```
+
+You'll know that it worked when your plot looks like this:
+
+```{r echo=FALSE}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point()
+```
+
+## Ex 3: Multiple plots (facets)
+
+Add `+ facet_wrap(~continent)` to your plot.
+
+
+```{r ex3, exercise=TRUE, exercise.eval = TRUE}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point()
+```
+
+
+```{r ex3-solution}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point() +
+  facet_wrap(~continent)
+```
+
+You'll know that it worked when your plot looks like this:
+
+```{r echo=FALSE}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point() +
+  facet_wrap(~continent)
+```
+
+## Ex 4: Change plot theme
+
+Change the default plot theme and grey background by adding a theme to it, for example `+theme_bw()`.
+
+
+```{r ex4, exercise=TRUE, exercise.eval = TRUE}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point() +
+  facet_wrap(~continent)
+```
+
+
+```{r ex4-solution}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point() +
+  facet_wrap(~continent) +
+  theme_
+```
+
+You'll know that it worked when your plot looks like this:
+
+```{r echo=FALSE}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point() +
+  facet_wrap(~continent) +
+  theme_bw()
+```
+
+After you get `+theme_bw()` to work, feel free to experiment with ggplot's other themes, e.g., `theme_dark()` or `theme_classic().
+
+
+## Ex 5: Modify a variable directly
+
+Nearly there now! The x-axis looks a bit crowded. We could tell R how to space it out, or to rotate the labels, etc., but it's easier to change the units. So instead of \$, let's make it "thousands of \$". The easiest way to do that is by diving it by 1000 directly inside the ggplot line. 
+
+Edit `x = gdpPercap` to `x = gdpPercap/1000`.
+
+
+```{r ex5, exercise=TRUE, exercise.eval = TRUE}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) +
+  geom_point() +
+  facet_wrap(~continent) +
+  theme_bw()
+```
+
+
+```{r ex5-solution}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap/1000, y = lifeExp, colour = continent)) +
+  geom_point() +
+  facet_wrap(~continent) +
+  theme_bw()
+```
+
+You'll know that it worked when your plot looks like this:
+
+```{r echo=FALSE}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap/1000, y = lifeExp, color = continent)) +
+  geom_point() +
+  facet_wrap(~continent) +
+  theme_bw()
+```
+
+### Optional: highlighting
+
+Now the really cool thing about knowing that you can modify variables within a ggplot is that you can highlight some values. For example, working in the same code you have above, see what happens if you change `colour = continent` to `color = lifeExp > 70`.
+
+You can now quickly glance that the average life expectancy is over 70 years in all European and Oceanic countries, and almost all American (North and South America) ones.
+
+```{r echo = FALSE}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap/1000, y = lifeExp, color = lifeExp > 70)) +
+  geom_point() +
+  facet_wrap(~continent) +
+  theme_bw()
+```
+
+
+
+## Ex 6: Give all points the same colour
+
+You have changed your mind regarding different colour points. You do want to give them some colour, but you want to make them all the same, especially now that continents are separated into panels anyway.
+
+Make all points "deepskyblue". To do this, you'll have to add colour as `colour = "deepskyblue"` and you'll need to add it inside the `geom_point()`, not at the top where `ggplot(aes())` are.
+
+
+```{r ex6, exercise=TRUE, exercise.eval = TRUE}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap/1000, y = lifeExp)) +
+  geom_point() +
+  facet_wrap(~continent) +
+  theme_bw()
+```
+
+
+```{r ex6-solution}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap/1000, y = lifeExp)) +
+  geom_point(colour = "deepskyblue") +
+  facet_wrap(~continent) +
+  theme_bw()
+```
+
+You'll know that it worked when your plot looks like this:
+
+```{r echo=FALSE}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap/1000, y = lifeExp)) +
+  geom_point(colour = "deepskyblue") +
+  facet_wrap(~continent) +
+  theme_bw()
+```
+
+## Test yourself 1
+
+You have changed your mind once again, and have decided to colour points by continent. Why does this code not work as desired? Feel free to experiment with it/try and fix it before you submit an answer below.
+
+```{r test-code, exercise = TRUE}
+gapdata %>% 
+  filter(year == 2007) %>% 
+  ggplot(aes(x = gdpPercap/1000, y = lifeExp, colour = "continent")) +
+  geom_point(colour = "deepskyblue") +
+  facet_wrap(~continent) +
+  theme_bw()
+```
+
+
+```{r test, echo=FALSE}
+question("What 2 things need changed in the above code to colour points by continent?",
+  answer("Need to replace the word `\"deepskyblue\"` with `continent`"),
+  answer("Need to remove `colour = \"deepskyblue\"`", correct = TRUE),
+  answer("Need to remove the quotes from `\"continent\"`", correct = TRUE),
+  answer("Need to spell the word colour correctly ('color').", correct = FALSE, message = "That's not it. ggplot() accepts both American and British spelling."),
+  incorrect = "Incorrect. You need to find both of the correct answers.",
+  allow_retry = TRUE)
+```
+
+## Test yourself 2
+
+
+Trying to go back to a simpler time, where we just had black points on a single plot, we're suddenly getting this strange error. Still using the same dataset, everything looks fine around the `ggplot(aes())` line too. What could be the matter?
+
+
+```{r test2-code, exercise = TRUE, exercise.eval = TRUE, error = TRUE}
+gapdata %>% 
+  filter(year == 2007) + 
+  ggplot(aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point()
+```
+
+```{r test2, echo=FALSE}
+question("What's wrong with the above code?",
+  answer("`colour = continent` is missing"),
+  answer("Sounds mad, I should restart R.", message = "Restarting R is always a good idea and can make many issues just go away. But it doesn't help with this one."),
+  answer("The first + should be a pipe: %>%", correct = TRUE, message = "Yes! Before `ggplot()` use the pipe. After `ggplot()` use +."),
+  incorrect = "Incorrect.",
+  allow_retry = TRUE)
+```
+
+
+
+
+
