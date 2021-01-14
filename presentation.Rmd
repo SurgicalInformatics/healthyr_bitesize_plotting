@@ -1,5 +1,5 @@
 ---
-title:  "An introduction by Riinu Pius"
+title:  "HealthyR Bitesize"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -32,14 +32,14 @@ library(gapminder)
 gapdata <- gapminder
 ```
 
+```{r, echo = FALSE}
+gapdata %>% 
+  slice(1:10) %>% 
+  kable()
 
-
-![](mydata.png)
-
-```{r}
-gapdata$year %>%   unique()
 ```
 
+The dataset we are using includes 142 countries.
 ---
 ## `ggplot()` initialises a canvas
 
@@ -51,7 +51,7 @@ Important: Before `ggplot()` use the pipe (`%>%`); after `ggplot()` use plus (`+
 
 gapdata %>% 
   filter(year == 2007) %>% 
-  ggplot(aes(x = gdpPercap, y=lifeExp))
+  ggplot(aes(x = gdpPercap, y = lifeExp))
 
 ```
 
@@ -251,10 +251,9 @@ These are just the main ones, Google "ggplot gallery" for many more options.
 And the `ggplot()` documentation: http://docs.ggplot2.org/
 
 ---
-## Exercises
+## LearnR tutorial
 
-https://argoshare.is.ed.ac.uk/ggplot_intro/
-
+Link to be shared in Zoom Chat window now.
 
 
 

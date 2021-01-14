@@ -1,7 +1,6 @@
 ---
-title: "Exercises"
-author: "Riinu Pius"
-date: "23/09/2020"
+title: "Intro to ggplot2"
+author: "HealthyR"
 output: 
   learnr::tutorial:
     progressive: true
@@ -15,10 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(learnr)
 library(tidyverse)
 library(gapminder)
-
 gapdata <- gapminder
-# library(gradethis)
-# gradethis::gradethis_setup()
 ```
 
 ## What we're working towards:
@@ -40,7 +36,6 @@ This is the dataset we are working with:
 ```{r}
 library(tidyverse)
 library(gapminder)
-library(tidyverse)
 gapdata <- gapminder
 
 gapdata

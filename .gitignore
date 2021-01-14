@@ -5,3 +5,5 @@
 .DS_Store
 libs*
 *.graffle
+*.html
+*_files/*
