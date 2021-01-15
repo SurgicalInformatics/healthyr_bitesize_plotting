@@ -22,7 +22,7 @@ gapdata <- gapminder
 ```{r, message=F, echo = FALSE}
 gapdata %>% 
   filter(year == 2007) %>% 
-  ggplot(aes(x = gdpPercap/1000, y=lifeExp,
+  ggplot(aes(x = gdpPercap/1000, y = lifeExp,
              colour = continent)) +
   geom_point() +
   facet_wrap(~continent) +
@@ -168,7 +168,7 @@ gapdata %>%
   theme_bw()
 ```
 
-After you get `+theme_bw()` to work, feel free to experiment with ggplot's other themes, e.g., `theme_dark()` or `theme_classic().
+After you get `+ theme_bw()` to work, feel free to experiment with ggplot's other themes, e.g., `theme_dark()` or `theme_classic()`.
 
 
 ## Ex 5: Modify a variable directly

@@ -143,7 +143,7 @@ include_graphics(fig_chunk("p4", "png"))
 
 
 ---
-## There is no limit\* to the `aes()` you can include
+## There are many different `aes()` you can include
 
 In addition to colouring the points by continent, we can size them by population:
 
@@ -152,8 +152,8 @@ In addition to colouring the points by continent, we can size them by population
 gapdata %>% 
   filter(year == 2007) %>% 
   ggplot(aes(x = gdpPercap, y = lifeExp,
-             colour = continent)) +
-  geom_point(shape = 1)
+             colour = continent, size = pop)) +
+  geom_point()
 
 ```
 
@@ -163,7 +163,7 @@ gapdata %>%
 
 &nbsp;
 
-\* there is a limit. Press F1 on `geom_point()` to see the list of aesthetics
+\* Press F1 on `geom_point()` to see the list of aesthetics. If F1 is not working, type `geom_point` into the Help tab within RStudio.
 
 
 ]
